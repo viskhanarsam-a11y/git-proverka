@@ -44,7 +44,7 @@ function BrandLogo({ compact = false }: { compact?: boolean }) {
   return (
     <span
       className={`flex items-center gap-2 font-semibold tracking-[-0.05em] text-white ${
-        compact ? "text-xl sm:text-2xl" : "text-4xl sm:text-6xl"
+        compact ? "text-lg sm:text-2xl" : "text-4xl sm:text-6xl"
       }`}
     >
       <span>Crypto</span>
@@ -52,7 +52,7 @@ function BrandLogo({ compact = false }: { compact?: boolean }) {
         <span
           className={
             compact
-              ? "text-[1.5rem] leading-none sm:text-[2rem]"
+              ? "text-[1.35rem] leading-none sm:text-[2rem]"
               : "text-[2.4rem] leading-none sm:text-[3.4rem]"
           }
         >
@@ -84,15 +84,15 @@ export default function TradingPage() {
   }, [search]);
 
   return (
-    <main className="relative min-h-screen overflow-hidden px-4 py-4 sm:px-6 sm:py-6">
+    <main className="relative min-h-screen overflow-hidden px-3 py-3 sm:px-6 sm:py-6">
       <Link
         href="/?screen=dashboard"
-        className="fixed left-4 top-4 z-30 rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(6,13,26,0.72),rgba(10,20,38,0.4))] px-4 py-3 shadow-[0_18px_40px_rgba(2,6,23,0.32)] backdrop-blur-xl transition hover:border-sky-300/18 hover:bg-[linear-gradient(180deg,rgba(8,17,32,0.82),rgba(12,25,46,0.5))] sm:left-6 sm:top-6"
+        className="fixed left-3 top-3 z-30 rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(6,13,26,0.72),rgba(10,20,38,0.4))] px-3 py-2.5 shadow-[0_18px_40px_rgba(2,6,23,0.32)] backdrop-blur-xl transition hover:border-sky-300/18 hover:bg-[linear-gradient(180deg,rgba(8,17,32,0.82),rgba(12,25,46,0.5))] sm:left-6 sm:top-6 sm:px-4 sm:py-3"
       >
         <BrandLogo compact />
       </Link>
 
-      <div className="mx-auto flex h-[calc(100vh-2rem)] max-w-[1520px] flex-col pt-20 sm:pt-24">
+      <div className="mx-auto flex min-h-[calc(100vh-1.5rem)] max-w-[1520px] flex-col pt-18 sm:h-[calc(100vh-3rem)] sm:pt-24">
         <div className="mb-4 sm:mb-5">
           <button
             type="button"
@@ -103,28 +103,28 @@ export default function TradingPage() {
           </button>
         </div>
 
-        <section className="flex min-h-0 flex-1 flex-col rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(5,12,24,0.76),rgba(11,20,38,0.48))] p-4 shadow-[0_24px_80px_rgba(2,6,23,0.34)] backdrop-blur-xl sm:p-5">
+        <section className="flex min-h-0 flex-1 flex-col rounded-[1.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(5,12,24,0.76),rgba(11,20,38,0.48))] p-3 shadow-[0_24px_80px_rgba(2,6,23,0.34)] backdrop-blur-xl sm:rounded-[2rem] sm:p-5">
           <div className="mb-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-sky-200/75">
+            <div className="min-w-0">
+              <p className="text-xs uppercase tracking-[0.24em] text-sky-200/75 sm:tracking-[0.3em]">
                 Спотовая торговля
               </p>
               <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <h1 className="text-3xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">
+                <h1 className="text-2xl font-semibold tracking-[-0.04em] text-white sm:text-4xl">
                   {selectedCoin.symbol}/USDT
                 </h1>
-                <div className="relative">
+                <div className="relative w-full sm:w-auto">
                   <button
                     type="button"
                     onClick={() => setIsSelectorOpen((current) => !current)}
-                    className="inline-flex items-center gap-2 rounded-full border border-sky-300/18 bg-sky-400/14 px-4 py-2 text-sm font-medium text-white shadow-[0_0_24px_rgba(56,189,248,0.12)] transition hover:bg-sky-400/18"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-sky-300/18 bg-sky-400/14 px-4 py-2 text-sm font-medium text-white shadow-[0_0_24px_rgba(56,189,248,0.12)] transition hover:bg-sky-400/18 sm:w-auto"
                   >
                     <span>Выбрать монету</span>
                     <span className="text-xs">{isSelectorOpen ? "▲" : "▼"}</span>
                   </button>
 
                   {isSelectorOpen ? (
-                    <div className="absolute left-0 top-full z-20 mt-3 w-[340px] rounded-[1.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(10,18,34,0.92),rgba(7,14,28,0.84))] p-4 shadow-[0_24px_60px_rgba(2,6,23,0.4)] backdrop-blur-xl">
+                    <div className="absolute left-0 top-full z-20 mt-3 w-full max-w-full rounded-[1.3rem] border border-white/10 bg-[linear-gradient(180deg,rgba(10,18,34,0.92),rgba(7,14,28,0.84))] p-3 shadow-[0_24px_60px_rgba(2,6,23,0.4)] backdrop-blur-xl sm:w-[340px] sm:p-4">
                       <input
                         type="search"
                         value={search}
@@ -133,7 +133,7 @@ export default function TradingPage() {
                         className="mb-3 w-full rounded-[1rem] border border-white/10 bg-white/8 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/10"
                       />
 
-                      <div className="max-h-[320px] overflow-y-auto pr-1">
+                      <div className="max-h-[260px] overflow-y-auto pr-1 sm:max-h-[320px]">
                         <div className="space-y-2">
                           {filteredCoins.map((coin) => (
                             <button
@@ -150,15 +150,15 @@ export default function TradingPage() {
                                   : "border-white/10 bg-white/[0.045] hover:border-white/20 hover:bg-white/[0.07]"
                               }`}
                             >
-                              <div>
+                              <div className="min-w-0">
                                 <p className="text-sm font-medium text-white">
                                   {coin.symbol}
                                 </p>
-                                <p className="mt-1 text-xs text-slate-400">
+                                <p className="mt-1 truncate text-xs text-slate-400">
                                   {coin.name}
                                 </p>
                               </div>
-                              <span className="text-xs uppercase tracking-[0.22em] text-sky-200/75">
+                              <span className="ml-3 shrink-0 text-xs uppercase tracking-[0.22em] text-sky-200/75">
                                 USDT
                               </span>
                             </button>
@@ -169,17 +169,17 @@ export default function TradingPage() {
                   ) : null}
                 </div>
               </div>
-              <p className="mt-3 text-sm leading-7 text-slate-400">
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-400">
                 Полноэкранный свечной график в стиле TradingView с таймфреймами, зумом и прокруткой.
               </p>
             </div>
 
-            <div className="rounded-full border border-white/10 bg-white/6 px-4 py-2 text-xs uppercase tracking-[0.24em] text-slate-300">
+            <div className="self-start rounded-full border border-white/10 bg-white/6 px-4 py-2 text-xs uppercase tracking-[0.24em] text-slate-300">
               Live Chart
             </div>
           </div>
 
-          <div className="min-h-0 flex-1 rounded-[1.6rem] border border-white/8 bg-[#020617]/60 p-2 sm:p-3">
+          <div className="min-h-[420px] flex-1 rounded-[1.3rem] border border-white/8 bg-[#020617]/60 p-2 sm:min-h-0 sm:rounded-[1.6rem] sm:p-3">
             <TradingViewAdvancedChart
               locale="ru"
               symbol={selectedCoin.tradingViewSymbol}

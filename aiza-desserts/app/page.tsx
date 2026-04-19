@@ -613,7 +613,7 @@ function CoinDetailView({
           </div>
         </div>
 
-        <div className="h-[540px] rounded-[1.4rem] border border-white/8 bg-[#020617]/60 p-2">
+        <div className="h-[420px] rounded-[1.4rem] border border-white/8 bg-[#020617]/60 p-2 sm:h-[540px]">
           <TradingViewAdvancedChart locale={language} symbol={tradingViewSymbol} />
         </div>
       </div>
@@ -765,6 +765,7 @@ function Dashboard({
   const [error, setError] = useState("");
   const [selectedCoin, setSelectedCoin] = useState<SelectedCoin>(null);
   const [section, setSection] = useState<DashboardSection>("halal-coins");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -851,8 +852,8 @@ function Dashboard({
   }, [coins, selectedCoin]);
 
   return (
-    <main className="h-screen overflow-hidden px-4 py-4 sm:px-6 sm:py-6">
-      <div className="mx-auto flex h-[calc(100vh-2rem)] max-w-[1520px] gap-4 overflow-hidden lg:gap-6">
+    <main className="min-h-screen overflow-hidden px-3 py-3 sm:px-6 sm:py-6">
+      <div className="mx-auto flex min-h-[calc(100vh-1.5rem)] max-w-[1520px] gap-3 overflow-hidden lg:h-[calc(100vh-3rem)] lg:gap-6">
         <aside className="sticky top-4 hidden h-full w-[260px] shrink-0 rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(2,6,23,0.78),rgba(12,25,48,0.5))] p-5 shadow-[0_24px_80px_rgba(2,6,23,0.38)] backdrop-blur-xl lg:flex lg:flex-col">
           <div>
             <p className="text-xs uppercase tracking-[0.34em] text-sky-200/75">
@@ -866,6 +867,7 @@ function Dashboard({
               onClick={() => {
                 setSection("halal-coins");
                 setSelectedCoin(null);
+                setIsMobileMenuOpen(false);
               }}
               className={`flex w-full items-center gap-3 rounded-[1.2rem] border px-4 py-3 text-left transition ${
                 section === "halal-coins"
@@ -881,6 +883,7 @@ function Dashboard({
               onClick={() => {
                 setSection("coin-check");
                 setSelectedCoin(null);
+                setIsMobileMenuOpen(false);
               }}
               className={`flex w-full items-center gap-3 rounded-[1.2rem] border px-4 py-3 text-left transition ${
                 section === "coin-check"
@@ -914,6 +917,90 @@ function Dashboard({
         <section className="flex min-w-0 flex-1 flex-col gap-4 overflow-y-auto pr-1 lg:gap-6">
           <header className="rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(5,12,24,0.76),rgba(11,20,38,0.48))] p-4 shadow-[0_20px_60px_rgba(2,6,23,0.3)] backdrop-blur-xl sm:p-5">
             <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+              <div className="flex items-center justify-between gap-3 lg:hidden">
+                <button
+                  type="button"
+                  onClick={() => setIsMobileMenuOpen((current) => !current)}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                >
+                  <span className="text-base leading-none">☰</span>
+                  <span>Меню</span>
+                </button>
+
+                <div className="flex rounded-full border border-white/10 bg-white/6 p-1">
+                  {(["ru", "en"] as Language[]).map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      onClick={() => onLanguageChange(item)}
+                      className={`rounded-full px-3 py-2 text-[11px] font-medium uppercase tracking-[0.18em] transition ${
+                        language === item
+                          ? "bg-sky-400/16 text-white shadow-[0_0_20px_rgba(56,189,248,0.16)]"
+                          : "text-slate-300 hover:text-white"
+                      }`}
+                    >
+                      {item}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {isMobileMenuOpen ? (
+                <div className="rounded-[1.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(10,18,34,0.88),rgba(7,14,28,0.74))] p-3 lg:hidden">
+                  <div className="space-y-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSection("halal-coins");
+                        setSelectedCoin(null);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`flex w-full items-center gap-3 rounded-[1rem] border px-4 py-3 text-left transition ${
+                        section === "halal-coins"
+                          ? "border-sky-300/18 bg-sky-400/10 shadow-[0_0_24px_rgba(56,189,248,0.12)]"
+                          : "border-white/10 bg-white/[0.045] hover:border-white/20 hover:bg-white/[0.07]"
+                      }`}
+                    >
+                      <span className={`h-2.5 w-2.5 rounded-full ${section === "halal-coins" ? "bg-sky-300 shadow-[0_0_12px_rgba(125,211,252,0.8)]" : "bg-slate-500"}`} />
+                      <span className="text-sm font-medium text-white">{UI_TEXT[language].halalCoins}</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSection("coin-check");
+                        setSelectedCoin(null);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`flex w-full items-center gap-3 rounded-[1rem] border px-4 py-3 text-left transition ${
+                        section === "coin-check"
+                          ? "border-sky-300/18 bg-sky-400/10 shadow-[0_0_24px_rgba(56,189,248,0.12)]"
+                          : "border-white/10 bg-white/[0.045] hover:border-white/20 hover:bg-white/[0.07]"
+                      }`}
+                    >
+                      <span className={`h-2.5 w-2.5 rounded-full ${section === "coin-check" ? "bg-sky-300 shadow-[0_0_12px_rgba(125,211,252,0.8)]" : "bg-slate-500"}`} />
+                      <span className="text-sm font-medium text-white">{UI_TEXT[language].coinCheck}</span>
+                    </button>
+
+                    <Link
+                      href="/trading"
+                      className="flex w-full items-center gap-3 rounded-[1rem] border border-white/10 bg-white/[0.045] px-4 py-3 text-left transition hover:border-white/20 hover:bg-white/[0.07]"
+                    >
+                      <span className="h-2.5 w-2.5 rounded-full bg-slate-500" />
+                      <span className="text-sm font-medium text-white">Спотовая торговля</span>
+                    </Link>
+
+                    <Link
+                      href="/support"
+                      className="flex w-full items-center gap-3 rounded-[1rem] border border-white/10 bg-white/[0.045] px-4 py-3 text-left transition hover:border-white/20 hover:bg-white/[0.07]"
+                    >
+                      <span className="text-sm leading-none text-sky-200">🎧</span>
+                      <span className="text-sm font-medium text-white">Поддержка</span>
+                    </Link>
+                  </div>
+                </div>
+              ) : null}
+
               <div className="flex min-w-0 flex-1 items-center gap-3">
                 <div className="w-full max-w-xl rounded-full border border-white/16 bg-white/88 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
                   <input
@@ -926,7 +1013,7 @@ function Dashboard({
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="hidden flex-wrap items-center gap-3 lg:flex">
                 <div className="flex rounded-full border border-white/10 bg-white/6 p-1">
                   {(["ru", "en"] as Language[]).map((item) => (
                     <button
