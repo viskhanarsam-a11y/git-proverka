@@ -62,7 +62,7 @@ export default function SupportPage() {
               Опишите вашу проблему или вопрос, и мы постараемся помочь.
             </p>
 
-            <div className="mt-6 flex justify-center sm:mt-8">
+            <div className="mt-6 flex flex-col justify-center gap-3 sm:mt-8 sm:flex-row">
               <a
                 href="https://t.me/"
                 target="_blank"
@@ -73,6 +73,18 @@ export default function SupportPage() {
                   🎧
                 </span>
                 <span>Написать в Telegram</span>
+              </a>
+
+              <a
+                href="https://wa.me/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex w-full max-w-[320px] items-center justify-center gap-3 rounded-full border border-sky-300/18 bg-sky-400/14 px-5 py-3 text-sm font-medium text-white shadow-[0_0_30px_rgba(56,189,248,0.14)] transition hover:bg-sky-400/18 sm:w-auto sm:max-w-none sm:px-6 sm:text-base"
+              >
+                <span aria-hidden="true" className="text-base leading-none">
+                  💬
+                </span>
+                <span>Написать в WhatsApp</span>
               </a>
             </div>
           </section>
