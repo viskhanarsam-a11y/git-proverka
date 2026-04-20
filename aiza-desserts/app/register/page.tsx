@@ -92,7 +92,7 @@ export default function RegisterPage() {
   return (
     <main className="relative min-h-screen overflow-hidden px-3 py-3 sm:px-6 sm:py-6">
       <Link
-        href="/?screen=dashboard"
+        href="/dashboard"
         className="fixed left-3 top-3 z-30 rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(6,13,26,0.72),rgba(10,20,38,0.4))] px-3 py-2.5 shadow-[0_18px_40px_rgba(2,6,23,0.32)] backdrop-blur-xl transition hover:border-sky-300/18 hover:bg-[linear-gradient(180deg,rgba(8,17,32,0.82),rgba(12,25,46,0.5))] sm:left-6 sm:top-6 sm:px-4 sm:py-3"
       >
         <BrandLogo compact />
@@ -108,7 +108,7 @@ export default function RegisterPage() {
                 return;
               }
 
-              router.push("/?screen=dashboard");
+              router.push("/dashboard");
             }}
             className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-medium text-white shadow-[0_18px_40px_rgba(2,6,23,0.18)] backdrop-blur-xl transition hover:border-sky-300/18 hover:bg-white/10"
           >
