@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 const TradingViewAdvancedChart = dynamic(
@@ -1121,9 +1120,12 @@ function Dashboard({
   );
 }
 
-export default function Home() {
-  const searchParams = useSearchParams();
-  const openDashboardDirectly = searchParams.get("screen") === "dashboard";
+export default function HomeClient({
+  initialScreen = "default",
+}: {
+  initialScreen?: "default" | "dashboard";
+}) {
+  const openDashboardDirectly = initialScreen === "dashboard";
   const [purpose, setPurpose] = useState<PurposeOption>(null);
   const [principles, setPrinciples] = useState<PrinciplesOption>(null);
   const [agreements, setAgreements] = useState([false, false, false]);
